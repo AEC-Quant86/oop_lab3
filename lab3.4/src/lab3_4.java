@@ -1,28 +1,35 @@
 
-public class lab3_3 {   
+public class lab3_4 {   
 
     public static void main(String[] args) {
         
-       sClass test1 = new sClass(1);
-       secondClass test2 = new secondClass(2,'2');
-       thirdClass test3 = new thirdClass(3,'3', "Test");
+       sClass test1 = new sClass('1');
+       secondClass test2 = new secondClass('2',"Second");
+       thirdClass test3 = new thirdClass('3',"third", 3);
+       thirdClass test4 = new thirdClass(test3);
        
        System.out.println(test1.toString());
        System.out.println(test2.toString());
        System.out.println(test3.toString());
+       System.out.println(test4.toString());
+       
     }
 }
 
 class sClass {
     
-    public int f1;
+    public char f1;
     
-    public void setF(int f1) {
+    public void setF(char f1) {
         this.f1 = f1;
     }
     
-    sClass(int f1) {
+    sClass(char f1) {
         this.f1 = f1;
+    }
+    
+    sClass(sClass in) {
+        this(in.f1);
     }
     
     @Override
@@ -34,14 +41,18 @@ class sClass {
 
 class secondClass extends sClass {
     
-    public char f2 = ' ';
+    public String f2 = "";
     
-    secondClass (int f1, char f2) {
+    secondClass (char f1, String f2) {
         super(f1);
         this.f2 = f2;
     }
     
-    public void setF(int f1, char f2) {
+    public secondClass(secondClass in) {
+        this(in.f1, in.f2);
+    }
+    
+    public void setF(char f1, String f2) {
         super.setF(f1);
         this.f2 = f2;
     }
@@ -54,14 +65,18 @@ class secondClass extends sClass {
 
 class thirdClass extends secondClass {
     
-    public String f3 = "";
+    public int f3 = 0;
     
-    thirdClass(int f1, char f2, String f3) {
+    thirdClass(char f1, String f2, int f3) {
         super(f1, f2);
         this.f3 = f3;
     }
     
-    public void setF(int f1, char f2, String f3) {
+    public thirdClass(thirdClass in) {
+        this(in.f1, in.f2, in.f3);
+    }
+    
+    public void setF(char f1, String f2, int f3) {
         super.setF(f1, f2);
         this.f3 = f3;
     }
